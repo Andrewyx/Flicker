@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float transitionSpeed = 10f;
     public float transitionRotationSpeed = 500f;
 
+    public MapArray2D mapArray2D;
+
     Vector3 targetGridPos;
     Vector3 prevTargetGridPos;
     Vector3 targetRotation;
@@ -46,10 +48,8 @@ public class PlayerController : MonoBehaviour
 
 
 
-    
-    // Start is called before the first frame update
     void MovePlayer(){
-        if(true) {
+        if(collisionDetect()) {
             prevTargetGridPos = targetGridPos;
             Vector3 targetPosition = targetGridPos;
             if(targetRotation.y > 270f && targetRotation.y < 361f) targetRotation.y = 0f;
@@ -69,7 +69,14 @@ public class PlayerController : MonoBehaviour
             targetGridPos = prevTargetGridPos;
         }
     }
-
+    private bool collisionDetect(){
+        if (mapArray2D.lightMap[Mathf.Abs((int)targetGridPos.z), Mathf.Abs((int)targetGridPos.x)] != 1){     
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
     void Start()
     {
         targetGridPos = Vector3Int.RoundToInt(startLocation.transform.position);
