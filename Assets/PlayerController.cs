@@ -22,7 +22,17 @@ public class PlayerController : MonoBehaviour
     public void MoveRight(){if (AtRest) targetGridPos += transform.right;}
 
 
+    public void swapDimension(){
+        if (transform.position.y == 3f && AtRest) {
+            targetGridPos += transform.up * -3f;
+            }
 
+        else if (transform.position.y == 0f && AtRest){
+            targetGridPos += transform.up * 3f;
+            }        
+        transform.position = targetGridPos;
+        transform.rotation = Quaternion.Euler(targetRotation);            
+    }        
     bool AtRest {
         get {
 
@@ -33,6 +43,9 @@ public class PlayerController : MonoBehaviour
                 return false;
         }
     }
+
+
+
     
     // Start is called before the first frame update
     void MovePlayer(){
@@ -43,7 +56,7 @@ public class PlayerController : MonoBehaviour
             if(targetRotation.y < 0f ) targetRotation.y = 270f;
             
             if(!smoothTransition){
-                transform.position = targetRotation;
+                transform.position = targetPosition;
                 transform.rotation = Quaternion.Euler(targetRotation);
             }
             else {

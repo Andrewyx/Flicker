@@ -12,7 +12,8 @@ public class PlayerInput : MonoBehaviour
     public KeyCode turnLeft = KeyCode.Q;
 
     public KeyCode turnRight = KeyCode.E;
-
+    public KeyCode duality = KeyCode.Space;
+    
 PlayerController controller;
 
     private void Awake() {
@@ -27,6 +28,7 @@ PlayerController controller;
         if (Input.GetKeyUp((right))) controller.MoveRight();
         if (Input.GetKeyUp((turnLeft))) controller.RotateLeft();
         if (Input.GetKeyUp((turnRight))) controller.RotateRight();
+        if (Input.GetKeyDown((duality))) controller.swapDimension();
 
     }
 }
