@@ -7,22 +7,35 @@ public class PlayerController : MonoBehaviour
     public bool smoothTransition = true;
     public float transitionSpeed = 10f;
     public float transitionRotationSpeed = 500f;
+    public LayerMask layerMask;
 
     public MapArray2D mapArray2D;
 
     Vector3 targetGridPos;
     Vector3 prevTargetGridPos;
     Vector3 targetRotation;
-
+    public float rayLength = 0.6f;
     public GameObject startLocation;
+    private bool obstructForward, obstructBackward, obstructLeft, obstructRight;
 
     public void RotateLeft(){if (AtRest) targetRotation -= Vector3.up * 90f;}
     public void RotateRight(){if (AtRest) targetRotation += Vector3.up * 90f;}
-    public void MoveForward(){if (AtRest) targetGridPos += transform.forward;}
-    public void MoveBackward(){if (AtRest) targetGridPos -= transform.forward;}
-    public void MoveLeft(){if (AtRest) targetGridPos -= transform.right;}
-    public void MoveRight(){if (AtRest) targetGridPos += transform.right;}
-
+    public void MoveForward(){if (AtRest && !obstructForward){
+        targetGridPos += transform.forward;
+        }
+    }
+    public void MoveBackward(){if (AtRest && !obstructBackward) {
+        targetGridPos -= transform.forward;
+        }
+    }
+    public void MoveLeft(){if (AtRest && !obstructLeft) {
+        targetGridPos -= transform.right;
+        }   
+    }
+    public void MoveRight(){if (AtRest && !obstructRight) {
+        targetGridPos += transform.right;
+        }
+    }
 
     public void swapDimension(){
         if (transform.position.y == 3f && AtRest) {
@@ -49,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
 
     void MovePlayer(){
-        if(collisionDetect()) {
+        if(true) {
             prevTargetGridPos = targetGridPos;
             Vector3 targetPosition = targetGridPos;
             if(targetRotation.y > 270f && targetRotation.y < 361f) targetRotation.y = 0f;
@@ -69,13 +82,62 @@ public class PlayerController : MonoBehaviour
             targetGridPos = prevTargetGridPos;
         }
     }
-    private bool collisionDetect(){
+    private void collisionDetect(){
+        Ray rayForward = new Ray(transform.position, transform.TransformDirection(Vector3.forward * rayLength));
+        Ray rayBackward = new Ray(transform.position, transform.TransformDirection(Vector3.back * rayLength));
+        Ray rayLeft = new Ray(transform.position, transform.TransformDirection(Vector3.left * rayLength));
+        Ray rayRight = new Ray(transform.position, transform.TransformDirection(Vector3.right * rayLength));
+
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * rayLength));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.back * rayLength));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.right * rayLength));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left * rayLength));                        
+        RaycastHit hitData;
+        if (Physics.Raycast(rayForward, out hitData, rayLength, layerMask))
+        {
+            Debug.Log("Wall in front");
+            obstructForward = true;
+        }    
+        else{
+            obstructForward = false;
+        }
+        if (Physics.Raycast(rayBackward, out hitData, rayLength, layerMask))
+        {
+            Debug.Log("Wall in front");
+            obstructBackward = true;
+        }    
+        else{
+            obstructBackward = false;
+        }
+        if (Physics.Raycast(rayLeft, out hitData, rayLength, layerMask))
+        {
+            Debug.Log("Wall in front");
+            obstructLeft = true;
+        }    
+        else{
+            obstructLeft = false;
+        }                
+        if (Physics.Raycast(rayRight, out hitData, rayLength, layerMask))
+        {
+            Debug.Log("Wall in front");
+            obstructRight = true;
+        }    
+        else{
+            obstructRight = false;
+        }        
+
+        
+
+        /*
         if (mapArray2D.lightMap[Mathf.Abs((int)targetGridPos.z), Mathf.Abs((int)targetGridPos.x)] != 1){     
             return true;
         }
         else {
             return false;
         }
+        */
+
+    
     }
     void Start()
     {
@@ -84,6 +146,8 @@ public class PlayerController : MonoBehaviour
 
 
     private void FixedUpdate() {
+        collisionDetect();
         MovePlayer();
+
     }
 }    

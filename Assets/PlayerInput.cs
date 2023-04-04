@@ -13,6 +13,7 @@ public class PlayerInput : MonoBehaviour
 
     public KeyCode turnRight = KeyCode.E;
     public KeyCode duality = KeyCode.Space;
+    public KeyCode altDuality = KeyCode.F;
     
 PlayerController controller;
 
@@ -29,6 +30,7 @@ PlayerController controller;
         if (Input.GetKeyUp((turnLeft))) controller.RotateLeft();
         if (Input.GetKeyUp((turnRight))) controller.RotateRight();
         if (Input.GetKeyDown((duality))) controller.swapDimension();
+        if (Input.GetKeyDown((altDuality))) controller.swapDimension();
 
     }
 }
