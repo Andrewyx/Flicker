@@ -10,10 +10,10 @@ public class PlayerInput : MonoBehaviour
     public KeyCode left = KeyCode.A;
     public KeyCode right = KeyCode.D;
     public KeyCode turnLeft = KeyCode.Q;
-
     public KeyCode turnRight = KeyCode.E;
     public KeyCode duality = KeyCode.Space;
-    public KeyCode altDuality = KeyCode.F;
+    public KeyCode attack = KeyCode.Mouse1;
+    public KeyCode interact = KeyCode.Mouse0;
     
 PlayerController controller;
 
@@ -30,7 +30,7 @@ PlayerController controller;
         if (Input.GetKeyUp((turnLeft))) controller.RotateLeft();
         if (Input.GetKeyUp((turnRight))) controller.RotateRight();
         if (Input.GetKeyDown((duality))) controller.swapDimension();
-        if (Input.GetKeyDown((altDuality))) controller.swapDimension();
+        if (Input.GetKeyDown((attack))) controller.initiateAttack();
 
     }
 }

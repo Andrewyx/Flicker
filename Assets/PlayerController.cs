@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public float health, maxHealth = 3f;
     public bool smoothTransition = true;
     public float transitionSpeed = 10f;
     public float transitionRotationSpeed = 500f;
     public LayerMask layerMask;
+    public LayerMask enemyMask;
 
     public MapArray2D mapArray2D;
 
@@ -15,6 +17,9 @@ public class PlayerController : MonoBehaviour
     Vector3 prevTargetGridPos;
     Vector3 targetRotation;
     public float rayLength = 0.6f;
+    Ray attackRay;
+    RaycastHit attackHit;
+
     public GameObject startLocation;
     private bool obstructForward, obstructBackward, obstructLeft, obstructRight;
 
@@ -58,7 +63,12 @@ public class PlayerController : MonoBehaviour
                 return false;
         }
     }
-
+    public void initiateAttack(){
+        if(Physics.Raycast(attackRay, out attackHit, 1f, enemyMask)){
+            Debug.Log("Hit Enemy!");
+            attackHit.collider.gameObject.GetComponent<Enemy>()?.TakeDamage(1f); 
+        }
+    } 
 
 
     void MovePlayer(){
@@ -95,15 +105,14 @@ public class PlayerController : MonoBehaviour
         RaycastHit hitData;
         if (Physics.Raycast(rayForward, out hitData, rayLength, layerMask))
         {
-            Debug.Log("Wall in front");
             obstructForward = true;
+
         }    
         else{
             obstructForward = false;
         }
         if (Physics.Raycast(rayBackward, out hitData, rayLength, layerMask))
         {
-            Debug.Log("Wall in front");
             obstructBackward = true;
         }    
         else{
@@ -111,7 +120,6 @@ public class PlayerController : MonoBehaviour
         }
         if (Physics.Raycast(rayLeft, out hitData, rayLength, layerMask))
         {
-            Debug.Log("Wall in front");
             obstructLeft = true;
         }    
         else{
@@ -119,33 +127,31 @@ public class PlayerController : MonoBehaviour
         }                
         if (Physics.Raycast(rayRight, out hitData, rayLength, layerMask))
         {
-            Debug.Log("Wall in front");
             obstructRight = true;
         }    
         else{
             obstructRight = false;
-        }        
+        }            
+    }
+    public void TakeDamage(float damageAmount){
+        health -= damageAmount;
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 
         
-
-        /*
-        if (mapArray2D.lightMap[Mathf.Abs((int)targetGridPos.z), Mathf.Abs((int)targetGridPos.x)] != 1){     
-            return true;
-        }
-        else {
-            return false;
-        }
-        */
-
-    
-    }
     void Start()
     {
-        targetGridPos = Vector3Int.RoundToInt(startLocation.transform.position);
+        targetGridPos = startLocation.transform.position;
+        health = maxHealth;
     }
 
 
     private void FixedUpdate() {
+        attackRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward * 1f));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 1f));
         collisionDetect();
         MovePlayer();
 
