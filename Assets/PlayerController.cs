@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    CandleAnimations candleAnimations;
+    public GameObject candle;
     public float health, maxHealth = 3f;
     public bool smoothTransition = true;
     public float transitionSpeed = 10f;
     public float transitionRotationSpeed = 500f;
     public LayerMask layerMask;
     public LayerMask enemyMask;
-
-    public MapArray2D mapArray2D;
+    //public MapArray2D mapArray2D;
 
     Vector3 targetGridPos;
     Vector3 prevTargetGridPos;
@@ -63,10 +64,14 @@ public class PlayerController : MonoBehaviour
                 return false;
         }
     }
+
     public void initiateAttack(){
-        if(Physics.Raycast(attackRay, out attackHit, 1f, enemyMask)){
+        if(Physics.Raycast(attackRay, out attackHit, 1f, enemyMask) && candleAnimations.attackability){
             Debug.Log("Hit Enemy!");
             attackHit.collider.gameObject.GetComponent<Enemy>()?.TakeDamage(1f); 
+        }
+        else{
+            Debug.Log("refeshing...");
         }
     } 
 
@@ -140,20 +145,24 @@ public class PlayerController : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
         
     void Start()
     {
         targetGridPos = startLocation.transform.position;
         health = maxHealth;
+
     }
 
+    private void Awake()
+    {
+        candleAnimations = candle.GetComponent<CandleAnimations>();
+        Debug.Log(candleAnimations.attackability);
+    }
 
     private void FixedUpdate() {
         attackRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward * 1f));
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 1f));
         collisionDetect();
         MovePlayer();
-
     }
 }    
