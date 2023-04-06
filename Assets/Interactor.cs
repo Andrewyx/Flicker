@@ -16,7 +16,7 @@ public class Interactor : MonoBehaviour
     }
             
      void Update() {
-         if (Input.GetKeyDown(KeyCode.L)) {
+         if (Input.GetKeyDown(KeyCode.Mouse0)) {
             Ray r = new Ray(InteractorSource.position, InteractorSource.forward);
             if (Physics.Raycast(r, out RaycastHit hitInfo, InteractRange)) {
                 if (hitInfo.collider.gameObject.TryGetComponent(out IInteractable interactObj)) {

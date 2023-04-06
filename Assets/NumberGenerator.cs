@@ -1,7 +1,11 @@
 using UnityEngine;
 
+
 public class NumberGenerator : MonoBehaviour, IInteractable {
+
+    public TextTest;
+
     public void Interact() {
-        Debug.Log(Random.Range(0, 100));
+        TextTest.enabled = true;
     }
 }
