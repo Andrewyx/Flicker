@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.12731713, g: 0.13414738, b: 0.121078536, a: 1}
+  m_IndirectSpecularColor: {r: 0.12731749, g: 0.13414757, b: 0.1210787, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3264,7 +3264,6 @@ GameObject:
   - component: {fileID: 173562067}
   - component: {fileID: 173562071}
   - component: {fileID: 173562072}
-  - component: {fileID: 173562073}
   - component: {fileID: 173562074}
   - component: {fileID: 173562075}
   m_Layer: 7
@@ -3361,7 +3360,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 173562066}
   m_LocalRotation: {x: 0.5, y: 0.5, z: -0.5, w: 0.5}
-  m_LocalPosition: {x: 0, y: 0, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 5}
   m_LocalScale: {x: 0.2, y: 0.2, z: 0.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -3382,6 +3381,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   maxHealth: 3
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  attackCooldown: 1
+  movePositionTransform: {fileID: 267799438}
 --- !u!65 &173562072
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3395,19 +3399,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 5, y: 5.51, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &173562073
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 173562066}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4d1317f9b261a634099e467e9890ada9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movePositionTransform: {fileID: 267799438}
 --- !u!195 &173562074
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -3418,7 +3409,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 1
-  m_Speed: 0
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -4854,7 +4845,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 267799438}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MoveTarget
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5225,7 +5216,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 298604265}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: 3, z: -3}
+  m_LocalPosition: {x: 1, y: 3, z: 2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -10370,7 +10361,7 @@ GameObject:
   - component: {fileID: 608175239}
   - component: {fileID: 608175238}
   - component: {fileID: 608175240}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Full_Light_Candle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11678,7 +11669,7 @@ GameObject:
   - component: {fileID: 705507995}
   - component: {fileID: 705507994}
   - component: {fileID: 705507996}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Directional Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -70813,7 +70804,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 915063633}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire parent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71869,7 +71860,7 @@ GameObject:
   - component: {fileID: 963194226}
   - component: {fileID: 963194230}
   - component: {fileID: 963194229}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Main Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -74823,7 +74814,7 @@ GameObject:
   - component: {fileID: 1202249102}
   - component: {fileID: 1202249101}
   - component: {fileID: 1202249100}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Capsule
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -75255,7 +75246,7 @@ GameObject:
   - component: {fileID: 1245472929}
   - component: {fileID: 1245472928}
   - component: {fileID: 1245472927}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86879,7 +86870,8 @@ GameObject:
   - component: {fileID: 1594526353}
   - component: {fileID: 1594526355}
   - component: {fileID: 1594526356}
-  m_Layer: 0
+  - component: {fileID: 1594526357}
+  m_Layer: 8
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86977,6 +86969,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cbfa89a7eec2064784616b28f944497, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &1594526357
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1594526351}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.17
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &1595182372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -87958,7 +87964,7 @@ GameObject:
   - component: {fileID: 1646318247}
   - component: {fileID: 1646318249}
   - component: {fileID: 1646318248}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire Add
   m_TagString: Untagged
   m_Icon: {fileID: 0}
