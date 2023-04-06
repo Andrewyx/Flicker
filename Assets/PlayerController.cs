@@ -156,7 +156,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         candleAnimations = candle.GetComponent<CandleAnimations>();
-        Debug.Log(candleAnimations.attackability);
     }
 
     private void FixedUpdate() {

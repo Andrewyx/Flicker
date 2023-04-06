@@ -23,16 +23,12 @@ public class CandleAnimations : MonoBehaviour
     public void canAttack()
     {
         attackability = true;
+        m_animator.SetBool("Attack", false);
     }
 
     public void cantAttack()
     {
         attackability = false;
     }
-
-    public void finishAttack()
-    {
-        m_animator.SetBool("Attack", false);
-    }
-
+    
 }
