@@ -3,9 +3,10 @@ using UnityEngine;
 
 public class NumberGenerator : MonoBehaviour, IInteractable {
 
-    public TextTest;
+   
+    //public TextTest;
 
     public void Interact() {
-        TextTest.enabled = true;
+        //TextTest.enabled = true;
     }
 }
