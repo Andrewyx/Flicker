@@ -4,14 +4,23 @@ using UnityEngine;
 
 public class CandleDrain : MonoBehaviour
 {
-    // Start is called before the first frame update
+    WaxBar waxBar;
+    
+    public GameObject WaxBar;
+
     public float totalPlaytime = 30f;
     public float reductionFactor = 0.9f;
     [SerializeField] private float downTimeLeft, upTimeLeft;
 
+    void Awake()
+    {
+        waxBar = WaxBar.GetComponent<WaxBar>();
+    }
+
     void Start()
     {
         downTimeLeft = totalPlaytime;
+        waxBar.SetMaxHealth(totalPlaytime);
     }
 
     // Update is called once per frame
@@ -29,5 +38,7 @@ public class CandleDrain : MonoBehaviour
             upTimeLeft -= Time.deltaTime;
             downTimeLeft += Time.deltaTime * reductionFactor;
         }
+
+        waxBar.SetHealth(downTimeLeft);
     }
 }

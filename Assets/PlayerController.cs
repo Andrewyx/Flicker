@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class PlayerController : MonoBehaviour
     public float rayLength = 0.6f;    
     private bool obstructForward, obstructBackward, obstructLeft, obstructRight;
     private bool obstructAbove, obstructUnder;
+
+    //heart stuff
+    public Image[] hearts;
+    public Sprite fullHeart;
+    public Sprite emptyHeart;
 
     public void RotateLeft(){if (AtRest) targetRotation -= Vector3.up * 90f;}
     public void RotateRight(){if (AtRest) targetRotation += Vector3.up * 90f;}
@@ -186,6 +192,32 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         candleAnimations = candle.GetComponent<CandleAnimations>();
+    }
+
+    void Update()
+    {
+        
+        if(health > maxHealth){
+            health = maxHealth;
+        }
+
+        for (int i = 0; i < hearts.Length; i++)
+        {
+
+            if(i < health){
+                hearts[i].sprite = fullHeart;
+            }
+            else{
+                hearts[i].sprite = emptyHeart;
+            }
+
+            if(i < maxHealth){
+                hearts[i].enabled = true;
+            }
+            else{
+                hearts[i].enabled = false;
+            }
+        }
     }
 
     private void FixedUpdate() {
