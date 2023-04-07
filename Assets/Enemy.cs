@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
             else if (Physics.Raycast(rayForward, out hitData, attackRange, enemyMask))
             {
                 navMeshAgent.destination = transform.position;
+                playerInfront = false;
             }
             else{
                 playerInfront = false;
