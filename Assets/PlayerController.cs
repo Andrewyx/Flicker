@@ -167,7 +167,11 @@ public class PlayerController : MonoBehaviour
         health -= damageAmount;
         if(health <= 0)
         {
-            Destroy(gameObject);
+            FindObjectOfType<GameManager>().isDead = true;
+            FindObjectOfType<GameManager>().EndGame();
+            candle.GetComponent<CandleAnimations>().enabled = false;
+            Object.Destroy(candle);
+            GetComponent<PlayerController>().enabled = false;
         }
     }
         

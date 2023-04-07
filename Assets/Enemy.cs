@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public float attackRange = 0.6f;
     private bool playerInfront;
     public LayerMask playerMask;
+    public LayerMask enemyMask;
     public float attackCooldown = 1.0f;
     private float currentCooldown;
     [SerializeField] private Transform movePositionTransform;
@@ -44,7 +45,11 @@ public class Enemy : MonoBehaviour
                     hitData.collider.gameObject.GetComponent<PlayerController>()?.TakeDamage(1f);          
                     currentCooldown = attackCooldown;
                 }
-            }    
+            }
+            else if (Physics.Raycast(rayForward, out hitData, attackRange, enemyMask))
+            {
+                navMeshAgent.destination = transform.position;
+            }
             else{
                 playerInfront = false;
                 navMeshAgent.destination = movePositionTransform.position;            
