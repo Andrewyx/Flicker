@@ -19,12 +19,14 @@ public class GameManager : MonoBehaviour
         else if (!gameEnded && timesUp){
             gameEnded = true;
             Debug.Log("Oh the misery, your time is up and life forfeit");
-            Invoke("Restart", 2f);
+            SceneManager.LoadScene("LoseScreen");
+            //Invoke("Restart", 2f); //this restarts play
         }
         else if (!gameEnded && isDead){
             gameEnded = true;
             Debug.Log("Your soul is damned for all of eternity");
-            Invoke("Restart", 2f);
+            SceneManager.LoadScene("LoseScreen");
+            //Invoke("Restart", 2f); //this restarts play
         }        
     }
     private void Restart(){
