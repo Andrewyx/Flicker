@@ -35,10 +35,11 @@ public class Enemy : MonoBehaviour
             Ray rayForward = new Ray(transform.position, transform.TransformDirection(Vector3.forward * 0.6f));
             Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 0.6f));   
             RaycastHit hitData;
-            currentCooldown -= Time.deltaTime;
+            
             if (Physics.Raycast(rayForward, out hitData, attackRange, playerMask))
             {
                 playerInfront = true;
+                currentCooldown -= Time.deltaTime;
                 navMeshAgent.destination = transform.position; 
 
                 if(playerInfront && currentCooldown <= 0f){
