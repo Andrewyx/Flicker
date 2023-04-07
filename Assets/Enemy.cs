@@ -5,6 +5,7 @@ using UnityEngine.AI;
 public class Enemy : MonoBehaviour
 {
     public float health, maxHealth = 3f;
+    public float attackRange = 0.6f;
     private bool playerInfront;
     public LayerMask playerMask;
     public float attackCooldown = 1.0f;
@@ -12,7 +13,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform movePositionTransform;
 
     private NavMeshAgent navMeshAgent;
-    
     private void Awake() {
         navMeshAgent = GetComponent<NavMeshAgent>();        
     }
@@ -30,24 +30,25 @@ public class Enemy : MonoBehaviour
         }
     }
     private void FixedUpdate() {
-        Ray rayForward = new Ray(transform.position, transform.TransformDirection(Vector3.forward * 0.6f));
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 0.6f));   
-        RaycastHit hitData;
-        currentCooldown -= Time.deltaTime;
-        if (Physics.Raycast(rayForward, out hitData, 0.6f, playerMask))
-        {
-            playerInfront = true;
-            navMeshAgent.destination = transform.position; 
+        if(movePositionTransform != null){
+            Ray rayForward = new Ray(transform.position, transform.TransformDirection(Vector3.forward * 0.6f));
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 0.6f));   
+            RaycastHit hitData;
+            currentCooldown -= Time.deltaTime;
+            if (Physics.Raycast(rayForward, out hitData, attackRange, playerMask))
+            {
+                playerInfront = true;
+                navMeshAgent.destination = transform.position; 
 
-            if(playerInfront && currentCooldown <= 0f){
-                hitData.collider.gameObject.GetComponent<PlayerController>()?.TakeDamage(1f);          
-                currentCooldown = attackCooldown;
-            }
-        }    
-        else{
-            playerInfront = false;
-            navMeshAgent.destination = movePositionTransform.position;            
-        }             
+                if(playerInfront && currentCooldown <= 0f){
+                    hitData.collider.gameObject.GetComponent<PlayerController>()?.TakeDamage(1f);          
+                    currentCooldown = attackCooldown;
+                }
+            }    
+            else{
+                playerInfront = false;
+                navMeshAgent.destination = movePositionTransform.position;            
+            }             
+        }
     }
-
 }

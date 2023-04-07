@@ -7,23 +7,20 @@ public class PlayerController : MonoBehaviour
     CandleAnimations candleAnimations;
     public static PlayerController instance;
     public GameObject candle;
-    public float health, maxHealth = 3f;
-    public bool smoothTransition = true;
-    private bool onFirstFloor = true;
-    public float transitionSpeed = 10f;
-    public float transitionRotationSpeed = 500f;
+    public GameObject startLocation;
     public LayerMask layerMask;
     public LayerMask enemyMask;
-    //public MapArray2D mapArray2D;
-
+    public LayerMask tempObstructMask;
     Vector3 targetGridPos;
     Vector3 prevTargetGridPos;
     Vector3 targetRotation;
-    public float rayLength = 0.6f;
     Ray attackRay;
-    RaycastHit attackHit;
-
-    public GameObject startLocation;
+    RaycastHit attackHit;        
+    public float health, maxHealth = 3f;
+    public bool smoothTransition = true;
+    public float transitionSpeed = 10f;
+    public float transitionRotationSpeed = 500f;
+    public float rayLength = 0.6f;    
     private bool obstructForward, obstructBackward, obstructLeft, obstructRight;
     private bool obstructAbove, obstructUnder;
 
@@ -69,7 +66,7 @@ public class PlayerController : MonoBehaviour
     }
 
     public void initiateAttack(){
-        if(Physics.Raycast(attackRay, out attackHit, 1f, enemyMask) && candleAnimations.attackability){
+        if(Physics.Raycast(attackRay, out attackHit, 1.2f, enemyMask) && candleAnimations.attackability){
             Debug.Log("Hit Enemy!");
             attackHit.collider.gameObject.GetComponent<Enemy>()?.TakeDamage(1f); 
         }
@@ -96,9 +93,6 @@ public class PlayerController : MonoBehaviour
             }
 
         }
-        else {
-            targetGridPos = prevTargetGridPos;
-        }
     }
     private void collisionDetect(){
         Ray rayForward = new Ray(transform.position, transform.TransformDirection(Vector3.forward * rayLength));
@@ -117,28 +111,28 @@ public class PlayerController : MonoBehaviour
         Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.left * rayLength));
         
         RaycastHit hitData;
-        if (Physics.Raycast(rayForward, out hitData, rayLength, layerMask))
+        if (Physics.Raycast(rayForward, out hitData, rayLength, layerMask) || Physics.Raycast(rayForward, out hitData, 1f, enemyMask))
         {
             obstructForward = true;
         }    
         else{
             obstructForward = false;
         }
-        if (Physics.Raycast(rayBackward, out hitData, rayLength, layerMask))
+        if (Physics.Raycast(rayBackward, out hitData, rayLength, layerMask) || Physics.Raycast(rayBackward, out hitData, rayLength, enemyMask))
         {
             obstructBackward = true;
         }    
         else{
             obstructBackward = false;
         }
-        if (Physics.Raycast(rayLeft, out hitData, rayLength, layerMask))
+        if (Physics.Raycast(rayLeft, out hitData, rayLength, layerMask) || Physics.Raycast(rayLeft, out hitData, rayLength, enemyMask))
         {
             obstructLeft = true;
         }    
         else{
             obstructLeft = false;
         }                
-        if (Physics.Raycast(rayRight, out hitData, rayLength, layerMask))
+        if (Physics.Raycast(rayRight, out hitData, rayLength, layerMask) || Physics.Raycast(rayRight, out hitData, rayLength, enemyMask))
         {
             obstructRight = true;
         }    
