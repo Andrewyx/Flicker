@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
         }
         else if (!gameEnded && timesUp){
             gameEnded = true;
-            Debug.Log("Oh the misdery, your time is up and life forfeit");
+            Debug.Log("Oh the misery, your time is up and life forfeit");
             Invoke("Restart", 2f);
         }
         else if (!gameEnded && isDead){

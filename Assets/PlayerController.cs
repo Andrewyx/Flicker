@@ -153,18 +153,18 @@ public class PlayerController : MonoBehaviour
             }    
             else{
                 obstructAbove = false;
-                //Debug.Log("Above is Clear");
+                //Debug.Log("Above is clear");
             }        
         }
         else if (transform.position.y == 3.5f){
             if (Physics.Raycast(rayDown, out hitData, 4.0f, layerMask))
             {
                 obstructUnder = true;
-                //Debug.Log("Something is Below!");
+                //Debug.Log("Something is below!");
             }    
             else{
                 obstructUnder = false;
-                //Debug.Log("Above is Clear");
+                //Debug.Log("Below is clear");
             }                    
             
         }
