@@ -9,15 +9,12 @@ public class Billboard : MonoBehaviour
 
     private void Start() {
         theSR = GetComponent<SpriteRenderer>();
+        theSR.flipX = true;
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        //cameraDir = Camera.main.transform.forward;
-        //cameraDir.y = 0;
-        //transform.rotation = Quaternion.LookRotation(cameraDir);
-
         transform.LookAt(PlayerController.instance.transform.position);
     }
 }

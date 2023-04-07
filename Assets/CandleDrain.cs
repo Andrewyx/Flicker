@@ -10,7 +10,7 @@ public class CandleDrain : MonoBehaviour
 
     public float totalPlaytime = 30f;
     public float reductionFactor = 0.9f;
-    [SerializeField] private float downTimeLeft, upTimeLeft;
+    public float downTimeLeft, upTimeLeft;
 
     void Awake()
     {
@@ -26,6 +26,18 @@ public class CandleDrain : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(upTimeLeft > totalPlaytime){
+            waxBar.SetMaxHealth(upTimeLeft);
+
+            totalPlaytime = upTimeLeft;
+        }
+        else if (downTimeLeft > totalPlaytime){
+            waxBar.SetMaxHealth(downTimeLeft);
+            waxBar.SetHealth(downTimeLeft);
+            totalPlaytime = downTimeLeft;
+        }
+
+
         if(upTimeLeft < 0 || downTimeLeft < 0){
             FindObjectOfType<GameManager>().timesUp = true;
             FindObjectOfType<GameManager>().EndGame();            

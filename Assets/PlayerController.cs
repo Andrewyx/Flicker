@@ -80,6 +80,15 @@ public class PlayerController : MonoBehaviour
             Debug.Log("refeshing...");
         }
     } 
+    public void addWax(float waxAmount){
+        if(transform.position.y == 3.5f){
+            GetComponent<CandleDrain>().upTimeLeft += waxAmount;
+        }
+        else if (transform.position.y == 0.5f){
+            GetComponent<CandleDrain>().downTimeLeft += waxAmount;
+        }
+    }
+        
 
 
     void MovePlayer(){
@@ -180,7 +189,10 @@ public class PlayerController : MonoBehaviour
             GetComponent<PlayerController>().enabled = false;
         }
     }
-        
+    private void Awake()
+    {
+        candleAnimations = candle.GetComponent<CandleAnimations>();
+    }        
     void Start()
     {
         targetGridPos = startLocation.transform.position;
@@ -189,14 +201,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
-    private void Awake()
-    {
-        candleAnimations = candle.GetComponent<CandleAnimations>();
-    }
-
-    void Update()
-    {
-        
+    private void FixedUpdate() {
+        attackRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward * 1f));
+        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 1f));
+        collisionDetect();
+        MovePlayer();
         if(health > maxHealth){
             health = maxHealth;
         }
@@ -217,13 +226,6 @@ public class PlayerController : MonoBehaviour
             else{
                 hearts[i].enabled = false;
             }
-        }
-    }
-
-    private void FixedUpdate() {
-        attackRay = new Ray(transform.position, transform.TransformDirection(Vector3.forward * 1f));
-        Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.forward * 1f));
-        collisionDetect();
-        MovePlayer();
+        }        
     }
 }    
