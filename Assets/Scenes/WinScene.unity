@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.99999905, g: 0.99999905, b: 0.99999905, a: 1}
+  m_IndirectSpecularColor: {r: 0.99974084, g: 0.99974084, b: 0.99974084, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -270,20 +270,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Though humanity yearns for eternal life,
-
-    Are the consequences worth
-    it?
-
-    Even if we live in the now or for the future,
-
-    We may be flickers,
-    our existence to our Higher Beings,
-
-    But we lose our identity.
-
-    We lose
-    our reason.'
+  m_text: "Charred by the eternity's blaze,\r\nOur transience bequeaths an unseen
+    grace.\r\nEven as we meander, doubtful of future's haze,\r\ntime's insignia stands
+    luminous, relentless of day's pace. \r\nCarpe Diem, as even a flicker can kindle
+    a flame"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 5a67bab8a36f5124aaa1c8bca9b59cae, type: 2}
   m_sharedMaterial: {fileID: 1947361931815962189, guid: 5a67bab8a36f5124aaa1c8bca9b59cae, type: 2}
