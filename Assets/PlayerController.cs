@@ -51,11 +51,11 @@ public class PlayerController : MonoBehaviour
     }
 
     public void swapDimension(){
-        if (transform.position.y == 3.5f && AtRest && !obstructUnder) {
+        if (transform.position.y > 2.5f && AtRest && !obstructUnder) {
             targetGridPos += transform.up * -3f;
             }
 
-        else if (transform.position.y == 0.5f && AtRest && !obstructAbove){
+        else if (transform.position.y < 2.5f && AtRest && !obstructAbove){
             targetGridPos += transform.up * 3f;
             }        
         transform.position = targetGridPos;
@@ -82,10 +82,10 @@ public class PlayerController : MonoBehaviour
         }
     } 
     public void addWax(float waxAmount){
-        if(transform.position.y == 3.5f){
+        if(transform.position.y > 2.5f){
             GetComponent<CandleDrain>().upTimeLeft += waxAmount;
         }
-        else if (transform.position.y == 0.5f){
+        else if (transform.position.y < 2.5f){
             GetComponent<CandleDrain>().downTimeLeft += waxAmount;
         }
     }
@@ -155,7 +155,7 @@ public class PlayerController : MonoBehaviour
         else{
             obstructRight = false;
         }
-        if (transform.position.y == 0.5f){
+        if (transform.position.y < 2.5f){
             if (Physics.Raycast(rayUp, out hitData, 4.0f, layerMask))
             {
                 obstructAbove = true;
@@ -166,7 +166,7 @@ public class PlayerController : MonoBehaviour
                 //Debug.Log("Above is clear");
             }        
         }
-        else if (transform.position.y == 3.5f){
+        else if (transform.position.y > 2.5f){
             if (Physics.Raycast(rayDown, out hitData, 4.0f, layerMask))
             {
                 obstructUnder = true;

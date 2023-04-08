@@ -43,13 +43,13 @@ public class CandleDrain : MonoBehaviour
             FindObjectOfType<GameManager>().timesUp = true;
             FindObjectOfType<GameManager>().EndGame();            
         }
-        else if(transform.position.y == 0.5f){
+        else if(transform.position.y < 2.5f){
             downTimeLeft -= Time.deltaTime;
             upTimeLeft += Time.deltaTime * reductionFactor;
             waxBar.SetHealth(downTimeLeft);
             waxBar.SetColor(Color.cyan);
         }
-        else if (transform.position.y == 3.5f){
+        else if (transform.position.y > 2.5f){
             upTimeLeft -= Time.deltaTime;
             downTimeLeft += Time.deltaTime * reductionFactor;
             waxBar.SetHealth(upTimeLeft);
