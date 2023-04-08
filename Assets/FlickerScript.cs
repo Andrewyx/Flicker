@@ -40,12 +40,12 @@
              StartCoroutine(DoFlicker());
          }
 
-        if (PlayerController.instance.transform.position.y == 0.5f)
+        if (PlayerController.instance.transform.position.y < 2.5f)
         {
             _lightSource.color = new Color32(0, 248, 225, 255);
         }
 
-        else if (PlayerController.instance.transform.position.y == 3.5f)
+        else if (PlayerController.instance.transform.position.y > 2.5f)
         {
             _lightSource.color = new Color32(225, 0, 0, 255);
         }
