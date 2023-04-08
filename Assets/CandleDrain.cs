@@ -21,10 +21,11 @@ public class CandleDrain : MonoBehaviour
     {
         downTimeLeft = totalPlaytime;
         waxBar.SetMaxHealth(totalPlaytime);
+        waxBar.SetHealth(downTimeLeft);
     }
 
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
         if(upTimeLeft > totalPlaytime){
             waxBar.SetMaxHealth(upTimeLeft);
@@ -45,12 +46,15 @@ public class CandleDrain : MonoBehaviour
         else if(transform.position.y == 0.5f){
             downTimeLeft -= Time.deltaTime;
             upTimeLeft += Time.deltaTime * reductionFactor;
+            waxBar.SetHealth(downTimeLeft);
+            waxBar.SetColor(Color.cyan);
         }
         else if (transform.position.y == 3.5f){
             upTimeLeft -= Time.deltaTime;
             downTimeLeft += Time.deltaTime * reductionFactor;
+            waxBar.SetHealth(upTimeLeft);
+            waxBar.SetColor(Color.red);
         }
 
-        waxBar.SetHealth(downTimeLeft);
     }
 }

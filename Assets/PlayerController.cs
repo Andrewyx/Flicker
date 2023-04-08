@@ -25,6 +25,7 @@ public class PlayerController : MonoBehaviour
     private bool obstructForward, obstructBackward, obstructLeft, obstructRight;
     private bool obstructAbove, obstructUnder;
 
+
     //heart stuff
     public Image[] hearts;
     public Sprite fullHeart;

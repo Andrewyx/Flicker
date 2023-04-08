@@ -33,12 +33,22 @@
          StartCoroutine(DoFlicker());
      }
  
-     void Update()
+     void FixedUpdate()
      {
          if (!StopFlickering && !_flickering)
          {
              StartCoroutine(DoFlicker());
          }
+
+        if (PlayerController.instance.transform.position.y == 0.5f)
+        {
+            _lightSource.color = new Color32(0, 248, 225, 255);
+        }
+
+        else if (PlayerController.instance.transform.position.y == 3.5f)
+        {
+            _lightSource.color = new Color32(225, 0, 0, 255);
+        }
      }
  
      private IEnumerator DoFlicker()
@@ -51,4 +61,5 @@
          }
          _flickering = false;
      }
+
  }

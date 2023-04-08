@@ -8,6 +8,8 @@ public class WaxBar : MonoBehaviour
     
     public Slider slider;
 
+    public Image fill;
+
     public void SetMaxHealth(float health)
     {
         slider.maxValue = health;
@@ -19,5 +21,9 @@ public class WaxBar : MonoBehaviour
         slider.value = health;
     }
 
+    public void SetColor(Color color)
+    {
+        fill.color = color;
+    }
 
 }
