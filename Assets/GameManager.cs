@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
     public void EndGame(){
         if(!gameEnded && gameWon){
             gameEnded = true;
-            SceneManager.LoadScene("Win Scene");
+            SceneManager.LoadScene("WinScene");
             Debug.Log("Congrats! You Win");
         }
         else if (!gameEnded && timesUp){
