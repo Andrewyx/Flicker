@@ -14,14 +14,14 @@ public class MusicChange : MonoBehaviour
     {
         if(PlayerController.instance.transform.position.y >= 2.5f)
         {
-            RSong.Play();
-            //BSong.Stop();
+            RSong.Play(0);
+            BSong.Stop();
             Debug.Log("Songplaying");
         }
         else
         {
-            BSong.Play();
-            //RSong.Stop();
+            BSong.Play(0);
+            RSong.Stop();
             Debug.Log("SongStop");
         }
     }

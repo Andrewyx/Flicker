@@ -12,7 +12,6 @@ public class FinalDoor : MonoBehaviour, IInteractable {
     public void Interact() {
         if(DarkKey.enabled && LightKey.enabled)
         {
-            Destroy(finalDoor);
             FindObjectOfType<GameManager>().gameWon = true;
             FindObjectOfType<GameManager>().EndGame();
         }
