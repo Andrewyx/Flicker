@@ -29,7 +29,7 @@ PlayerController controller;
         if (Input.GetKeyUp((right))) controller.MoveRight();
         if (Input.GetKeyUp((turnLeft))) controller.RotateLeft();
         if (Input.GetKeyUp((turnRight))) controller.RotateRight();
-        if (Input.GetKeyDown((duality))) controller.swapDimension();
+        // if (Input.GetKeyDown((duality))) controller.swapDimension();
         if (Input.GetKeyDown((attack))) controller.initiateAttack();
 
     }

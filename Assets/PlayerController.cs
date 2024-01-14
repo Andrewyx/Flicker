@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public float transitionRotationSpeed = 500f;
     public float rayLength = 0.6f;    
     private bool obstructForward, obstructBackward, obstructLeft, obstructRight;
-    private bool obstructAbove, obstructUnder;
+    public bool obstructAbove, obstructUnder;
 
 
     //heart stuff
@@ -60,7 +60,8 @@ public class PlayerController : MonoBehaviour
             }        
         transform.position = targetGridPos;
         transform.rotation = Quaternion.Euler(targetRotation);            
-    }        
+    }     
+
     bool AtRest {
         get {
 
@@ -110,7 +111,7 @@ public class PlayerController : MonoBehaviour
 
         }
     }
-    private void collisionDetect(){
+    public void collisionDetect(){
         Ray rayForward = new Ray(transform.position, transform.TransformDirection(Vector3.forward * rayLength));
         Ray rayBackward = new Ray(transform.position, transform.TransformDirection(Vector3.back * rayLength));
         Ray rayLeft = new Ray(transform.position, transform.TransformDirection(Vector3.left * rayLength));

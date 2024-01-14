@@ -88,15 +88,23 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 834722208, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
+      value: {fileID: 1406416216, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
+    - time: 0.1
+      value: {fileID: -262950012, guid: d1677867f6a7cd24bb3097ae1d5b679f, type: 3}
     - time: 0.2
-      value: {fileID: 1982675712, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
+      value: {fileID: 1064244218, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
     - time: 0.23333333
-      value: {fileID: 882268728, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
+      value: {fileID: 410391998, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
     - time: 0.26666668
-      value: {fileID: 1819283227, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
+      value: {fileID: 2118855792, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
     - time: 0.3
-      value: {fileID: 834722208, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
+      value: {fileID: 1406416216, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
+    - time: 0.43333334
+      value: {fileID: 835133564, guid: d1677867f6a7cd24bb3097ae1d5b679f, type: 3}
+    - time: 0.53333336
+      value: {fileID: 1987468090, guid: d1677867f6a7cd24bb3097ae1d5b679f, type: 3}
+    - time: 0.6
+      value: {fileID: -262950012, guid: d1677867f6a7cd24bb3097ae1d5b679f, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -130,17 +138,21 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 834722208, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
-    - {fileID: 1982675712, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
-    - {fileID: 882268728, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
-    - {fileID: 1819283227, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
-    - {fileID: 834722208, guid: 0102afa9d20f9a543906e27c28e1da4a, type: 3}
+    - {fileID: 1406416216, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
+    - {fileID: -262950012, guid: d1677867f6a7cd24bb3097ae1d5b679f, type: 3}
+    - {fileID: 1064244218, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
+    - {fileID: 410391998, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
+    - {fileID: 2118855792, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
+    - {fileID: 1406416216, guid: 4a6bca452aa26e346b6b219e0362e597, type: 3}
+    - {fileID: 835133564, guid: d1677867f6a7cd24bb3097ae1d5b679f, type: 3}
+    - {fileID: 1987468090, guid: d1677867f6a7cd24bb3097ae1d5b679f, type: 3}
+    - {fileID: -262950012, guid: d1677867f6a7cd24bb3097ae1d5b679f, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.6
+    m_StopTime: 0.6333334
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
@@ -419,7 +431,14 @@ AnimationClip:
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
-  - time: 0.6
+  - time: 0.033333335
+    functionName: playThwack
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
+  - time: 0.6333333
     functionName: canAttack
     data: 
     objectReferenceParameter: {fileID: 0}
