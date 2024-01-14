@@ -13,6 +13,10 @@ public class Enemy : MonoBehaviour
     private float currentCooldown;
     [SerializeField] private Transform movePositionTransform;
 
+    private AudioSource _audioSource;
+    public AudioClip hit;
+    public AudioClip death;
+
     private NavMeshAgent navMeshAgent;
     private void Awake() {
         navMeshAgent = GetComponent<NavMeshAgent>();        
@@ -21,12 +25,16 @@ public class Enemy : MonoBehaviour
     {
         health = maxHealth;    
         currentCooldown = attackCooldown;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     public void TakeDamage(float damageAmount){
         health -= damageAmount;
+        _audioSource.PlayOneShot(hit);
         if(health <= 0)
         {
+            _audioSource.PlayOneShot(death);
+            
             Destroy(gameObject);
         }
     }

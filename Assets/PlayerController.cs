@@ -24,7 +24,9 @@ public class PlayerController : MonoBehaviour
     public float rayLength = 0.6f;    
     private bool obstructForward, obstructBackward, obstructLeft, obstructRight;
     public bool obstructAbove, obstructUnder;
-
+    
+    private AudioSource _audioSource;
+    public AudioClip ow;
 
     //heart stuff
     public Image[] hearts;
@@ -182,8 +184,10 @@ public class PlayerController : MonoBehaviour
     }
     public void TakeDamage(float damageAmount){
         health -= damageAmount;
+        _audioSource.PlayOneShot(ow, 0.5f);
         if(health <= 0)
         {
+            
             FindObjectOfType<GameManager>().isDead = true;
             FindObjectOfType<GameManager>().EndGame();
             candle.GetComponent<CandleAnimations>().enabled = false;
@@ -200,6 +204,7 @@ public class PlayerController : MonoBehaviour
         targetGridPos = startLocation.transform.position;
         health = maxHealth;
         instance = this;
+        _audioSource = GetComponent<AudioSource>();
 
     }
 
