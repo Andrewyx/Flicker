@@ -14,7 +14,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Transform movePositionTransform;
 
     private AudioSource _audioSource;
-    public AudioClip hit;
+    public AudioClip[] hit;
     public AudioClip death;
 
     private NavMeshAgent navMeshAgent;
@@ -30,11 +30,12 @@ public class Enemy : MonoBehaviour
 
     public void TakeDamage(float damageAmount){
         health -= damageAmount;
-        _audioSource.PlayOneShot(hit);
+
+        _audioSource.PlayOneShot(hit[Random.Range(0,hit.Length)]);
+
         if(health <= 0)
         {
-            _audioSource.PlayOneShot(death);
-            
+            AudioSource.PlayClipAtPoint(death, transform.position, 1f);
             Destroy(gameObject);
         }
     }

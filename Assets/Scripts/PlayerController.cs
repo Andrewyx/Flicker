@@ -27,6 +27,8 @@ public class PlayerController : MonoBehaviour
     
     private AudioSource _audioSource;
     public AudioClip ow;
+    public AudioClip[] steps;
+
 
     //heart stuff
     public Image[] hearts;
@@ -35,20 +37,25 @@ public class PlayerController : MonoBehaviour
 
     public void RotateLeft(){if (AtRest) targetRotation -= Vector3.up * 90f;}
     public void RotateRight(){if (AtRest) targetRotation += Vector3.up * 90f;}
+
     public void MoveForward(){if (AtRest && !obstructForward){
         targetGridPos += transform.forward;
+        _audioSource.PlayOneShot(steps[Random.Range(0,steps.Length)]);
         }
     }
     public void MoveBackward(){if (AtRest && !obstructBackward) {
         targetGridPos -= transform.forward;
+        _audioSource.PlayOneShot(steps[Random.Range(0,steps.Length)]);
         }
     }
     public void MoveLeft(){if (AtRest && !obstructLeft) {
         targetGridPos -= transform.right;
+        _audioSource.PlayOneShot(steps[Random.Range(0,steps.Length)]);
         }   
     }
     public void MoveRight(){if (AtRest && !obstructRight) {
         targetGridPos += transform.right;
+        _audioSource.PlayOneShot(steps[Random.Range(0,steps.Length)]);
         }
     }
 
