@@ -19,7 +19,8 @@ public class CandleDrain : MonoBehaviour
 
     void Start()
     {
-        downTimeLeft = totalPlaytime;
+        downTimeLeft = totalPlaytime / 2;
+        upTimeLeft = totalPlaytime / 2;
         waxBar.SetMaxHealth(totalPlaytime);
         waxBar.SetHealth(downTimeLeft);
     }
