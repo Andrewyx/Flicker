@@ -3,12 +3,12 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TutSkull2: MonoBehaviour, IInteractable {
+public class NumberGenerator : MonoBehaviour, IInteractable {
 
     public float cooldownTimer = 1.5f;
     private float currentTime;
     public Canvas Prompt;
-    public Canvas tutSkull2;
+    public Canvas tutSkull1;
     public SpriteRenderer spriteRenderer;
     public Sprite newSprite;
 
@@ -18,7 +18,7 @@ public class TutSkull2: MonoBehaviour, IInteractable {
         Prompt.enabled = true;
         currentTime = cooldownTimer;
         spriteRenderer.sprite = newSprite;
-        tutSkull2.enabled = true;
+        tutSkull1.enabled = true;
     }
 
     private void Start(){

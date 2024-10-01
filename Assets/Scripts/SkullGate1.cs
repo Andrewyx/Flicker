@@ -3,21 +3,21 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TutSkullGate : MonoBehaviour, IInteractable {
+public class SkullGate1 : MonoBehaviour, IInteractable {
 
-    public Canvas TutSkull1;
-    public Canvas TutSkull2;
+    public Canvas skull1_1;
+    public Canvas skull1_2;
     public GameObject DungeonGate;
     public Canvas Prompt;
     private float currentTime;
     
     public void Interact() {
-        if(TutSkull1.enabled && TutSkull2.enabled)
+        if(skull1_1.enabled && skull1_2.enabled)
         {
             Destroy(DungeonGate);
             Debug.Log("Gate is activated");
         }
-        if(TutSkull1.enabled == false || TutSkull2.enabled == false){
+        if(skull1_1.enabled == false || skull1_2.enabled == false){
             Prompt.enabled = true;
             if(Prompt.enabled){
                 currentTime-=Time.deltaTime;

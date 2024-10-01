@@ -3,14 +3,17 @@ using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 
-public class TutSkull2: MonoBehaviour, IInteractable {
+public class Skull2 : MonoBehaviour, IInteractable {
 
     public float cooldownTimer = 1.5f;
     private float currentTime;
     public Canvas Prompt;
-    public Canvas tutSkull2;
     public SpriteRenderer spriteRenderer;
     public Sprite newSprite;
+
+    public Canvas skull2;
+
+    public int skull2Count;
 
 
     public void Interact() {
@@ -18,7 +21,7 @@ public class TutSkull2: MonoBehaviour, IInteractable {
         Prompt.enabled = true;
         currentTime = cooldownTimer;
         spriteRenderer.sprite = newSprite;
-        tutSkull2.enabled = true;
+        skull2Count++;
     }
 
     private void Start(){
@@ -27,10 +30,13 @@ public class TutSkull2: MonoBehaviour, IInteractable {
 
     private void FixedUpdate(){
         if(Prompt.enabled){
-            currentTime-=Time.deltaTime;
+            currentTime -=Time.deltaTime;
             if(currentTime<=0f){
                 Prompt.enabled = false;
             }
+        }
+        if(skull2Count >= 6){
+            skull2.enabled = true;
         }
     }
 
